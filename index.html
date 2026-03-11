@@ -541,9 +541,64 @@ body.dark #toast{background:rgba(167,139,250,0.18);border-color:rgba(167,139,250
 .wall-card{background:linear-gradient(135deg,rgba(124,58,237,0.07),rgba(236,72,153,0.04));border:1px solid var(--card-border);border-radius:14px;padding:13px 14px;transition:var(--ease);}
 .wall-star{color:#FCD34D;font-size:11px;letter-spacing:2px;}
 .wall-author{font-size:10px;font-weight:700;color:var(--accent2);margin-top:7px;transition:var(--ease);}
+
+/* ═══════ SPLASH ═══════ */
+#splash{position:fixed;inset:0;z-index:9999;background:linear-gradient(160deg,#0B0621 0%,#1A0533 50%,#0D0426 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;transition:opacity 0.6s ease;}
+#splash.hide{opacity:0;pointer-events:none;}
+.spl-shield{position:relative;font-size:70px;background:linear-gradient(135deg,#7C3AED,#A855F7,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 28px rgba(124,58,237,0.9));animation:spl-pop 0.7s cubic-bezier(0.23,1,0.32,1) 0.3s both;}
+@keyframes spl-pop{0%{transform:scale(0) rotate(-30deg);opacity:0}60%{transform:scale(1.18) rotate(5deg)}100%{transform:scale(1) rotate(0);opacity:1}}
+.spl-ring1{position:absolute;width:110px;height:110px;border-radius:50%;border:1px solid rgba(124,58,237,0.35);animation:spl-ring 1s ease-out 0.8s both;}
+.spl-ring2{position:absolute;width:160px;height:160px;border-radius:50%;border:1px solid rgba(124,58,237,0.18);animation:spl-ring 1s ease-out 1.0s both;}
+@keyframes spl-ring{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+.spl-title{font-size:32px;font-weight:900;color:#fff;letter-spacing:0.35em;animation:spl-up 0.5s ease 1s both;}
+.spl-sub{font-size:10px;color:rgba(167,139,250,0.6);letter-spacing:0.2em;text-transform:uppercase;margin-top:2px;animation:spl-up 0.5s ease 1.25s both;}
+.spl-bar{width:110px;height:2px;background:rgba(167,139,250,0.12);border-radius:2px;margin-top:22px;overflow:hidden;animation:spl-up 0.4s ease 1.5s both;}
+.spl-bar-fill{height:100%;background:linear-gradient(90deg,#7C3AED,#EC4899);border-radius:2px;width:0;animation:spl-fill 1.1s ease 1.6s both;}
+@keyframes spl-fill{to{width:100%}}
+@keyframes spl-up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+/* ═══════ GPS SHEET ═══════ */
+#gps-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.35);z-index:98;opacity:0;pointer-events:none;transition:opacity 0.3s;}
+#gps-overlay.open{opacity:1;pointer-events:auto;}
+#gps-sheet{position:absolute;bottom:0;left:0;right:0;background:var(--card);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border-top:1px solid var(--card-border);border-radius:24px 24px 0 0;padding:20px 20px 28px;z-index:99;transform:translateY(100%);transition:transform 0.38s cubic-bezier(0.23,1,0.32,1);}
+#gps-sheet.open{transform:translateY(0);}
+.gps-handle{width:36px;height:4px;border-radius:2px;background:var(--card-border);margin:0 auto 16px;}
+.gps-contact{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--card-border);}
+.gps-contact:last-of-type{border-bottom:none;}
+.gps-av{width:38px;height:38px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;flex-shrink:0;}
+.gps-name{font-size:13px;font-weight:700;color:var(--txt);flex:1;transition:var(--ease);}
+.gps-dist{font-size:10px;color:var(--muted);}
+.gps-send{background:linear-gradient(135deg,#22C55E,#16A34A);color:#fff;border:none;padding:7px 14px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;transition:all 0.18s;}
+.gps-send.sent{background:var(--card);color:var(--muted);border:1px solid var(--card-border);}
+
+/* ═══════ MAPPA POTENZIATA ═══════ */
+.route-path{fill:none;stroke:#22C55E;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:9 6;animation:route-flow 1.8s linear infinite;filter:drop-shadow(0 0 5px rgba(34,197,94,0.75));}
+@keyframes route-flow{to{stroke-dashoffset:-60}}
+.user-pos{position:absolute;transform:translate(-50%,-50%);pointer-events:none;}
+.user-pos-ring{width:26px;height:26px;border-radius:50%;background:rgba(34,197,94,0.18);border:1.5px solid rgba(34,197,94,0.45);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);animation:u-pulse 1.8s ease-in-out infinite;}
+@keyframes u-pulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:0.9}50%{transform:translate(-50%,-50%) scale(1.7);opacity:0.2}}
+.user-pos-dot{width:11px;height:11px;border-radius:50%;background:#22C55E;border:2.5px solid #fff;box-shadow:0 0 12px rgba(34,197,94,0.9);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);}
+.map-girl{position:absolute;width:14px;height:14px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 8px rgba(167,139,250,0.9);cursor:pointer;animation:mgirl 2.2s ease-in-out infinite;transform:translate(-50%,-50%);}
+@keyframes mgirl{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.3)}}
+.map-popup{position:absolute;z-index:50;background:var(--card);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);border:1px solid var(--card-border);border-radius:14px;padding:10px 13px 11px;min-width:155px;box-shadow:var(--shadow);transform:translate(-50%,-115%);animation:popIn 0.2s cubic-bezier(0.23,1,0.32,1);}
+@keyframes popIn{from{opacity:0;transform:translate(-50%,-100%) scale(0.88)}to{opacity:1;transform:translate(-50%,-115%) scale(1)}}
+.map-popup-av{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;flex-shrink:0;}
+.map-popup-score{font-size:18px;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 </style>
 </head>
 <body>
+
+<!-- SPLASH SCREEN -->
+<div id="splash">
+  <div style="position:relative;display:flex;align-items:center;justify-content:center;width:170px;height:170px">
+    <div class="spl-ring1"></div>
+    <div class="spl-ring2"></div>
+    <div class="spl-shield"><i class="fas fa-shield-halved"></i></div>
+  </div>
+  <div class="spl-title">ATHENA</div>
+  <div class="spl-sub">Safety Network</div>
+  <div class="spl-bar"><div class="spl-bar-fill"></div></div>
+</div>
 
 <div id="shell">
 <div id="app">
@@ -592,6 +647,35 @@ body.dark #toast{background:rgba(167,139,250,0.18);border-color:rgba(167,139,250
             <div class="pill-ico" style="background:linear-gradient(135deg,#B45309,#D97706)"><i class="fas fa-map-location-dot" style="color:#fff"></i></div>
             <div><div class="pill-t">Heatmap Live</div><div class="pill-s">Strade sicure</div></div>
           </div></div>
+        </div>
+      </div>
+      <!-- GPS SHARE -->
+      <div class="card fi d2" style="margin-bottom:10px">
+        <div class="pill" onclick="openGpsSheet()" style="padding:14px 16px">
+          <div class="pill-ico" style="background:linear-gradient(135deg,#16A34A,#22C55E)"><i class="fas fa-location-dot" style="color:#fff"></i></div>
+          <div style="flex:1"><div class="pill-t">Condividi Posizione</div><div class="pill-s">Invia alle amiche · 1 click</div></div>
+          <i class="fas fa-paper-plane" style="color:#22C55E;font-size:15px;opacity:0.85"></i>
+        </div>
+      </div>
+      <!-- GPS SHEET -->
+      <div id="gps-overlay" onclick="closeGpsSheet()"></div>
+      <div id="gps-sheet">
+        <div class="gps-handle"></div>
+        <div style="font-size:13px;font-weight:800;color:var(--txt);margin-bottom:12px;transition:var(--ease)"><i class="fas fa-location-dot" style="color:#22C55E;margin-right:6px"></i>Invia posizione a</div>
+        <div class="gps-contact">
+          <div class="gps-av" style="background:linear-gradient(135deg,#7C3AED,#EC4899)">M</div>
+          <div><div class="gps-name">Marta B.</div><div class="gps-dist">0.3 km</div></div>
+          <button class="gps-send" onclick="sendGps(this)">Invia</button>
+        </div>
+        <div class="gps-contact">
+          <div class="gps-av" style="background:linear-gradient(135deg,#0F766E,#0D9488)">S</div>
+          <div><div class="gps-name">Sofia M.</div><div class="gps-dist">0.7 km</div></div>
+          <button class="gps-send" onclick="sendGps(this)">Invia</button>
+        </div>
+        <div class="gps-contact">
+          <div class="gps-av" style="background:linear-gradient(135deg,#1D4ED8,#6D28D9)">E</div>
+          <div><div class="gps-name">Elena C.</div><div class="gps-dist">1.4 km</div></div>
+          <button class="gps-send" onclick="sendGps(this)">Invia</button>
         </div>
       </div>
       <div class="card fi d2">
@@ -691,11 +775,26 @@ body.dark #toast{background:rgba(167,139,250,0.18);border-color:rgba(167,139,250
           <line id="d1" class="sd" x1="180" y1="216" x2="180" y2="360"/>
           <path id="d2" class="sd" d="M225 100 L270 144 L270 250"/>
           <line id="d3" class="sd" x1="270" y1="288" x2="360" y2="288"/>
+          <!-- Percorso sicuro animato -->
+          <path class="route-path" d="M180 310 L180 216 L135 216 L135 144 L90 144 L90 72 L180 72"/>
         </svg>
         <div class="haven" id="h1" style="top:39%;left:24%"><div class="h-ring"></div><div class="h-dot"></div><div class="h-lbl">FARMACIA</div></div>
         <div class="haven" id="h2" style="top:19%;left:59%"><div class="h-ring"></div><div class="h-dot" style="animation-delay:.4s"></div><div class="h-lbl">HOTEL</div></div>
         <div class="haven" id="h3" style="top:59%;left:37%"><div class="h-ring"></div><div class="h-dot" style="animation-delay:.8s"></div><div class="h-lbl">POLIZIA</div></div>
         <div class="haven" id="h4" style="top:14%;left:19%"><div class="h-ring"></div><div class="h-dot" style="animation-delay:1.2s"></div><div class="h-lbl">GUARDIA MED.</div></div>
+        <!-- Tu sei qui -->
+        <div class="user-pos" style="top:86%;left:50%">
+          <div class="user-pos-ring"></div>
+          <div class="user-pos-dot"></div>
+        </div>
+        <!-- Ragazze vicine cliccabili -->
+        <div class="map-girl" style="top:30%;left:44%;background:linear-gradient(135deg,#7C3AED,#EC4899)" onclick="showMapGirl(this,0)"></div>
+        <div class="map-girl" style="top:52%;left:62%;background:linear-gradient(135deg,#0F766E,#0D9488);animation-delay:0.4s" onclick="showMapGirl(this,1)"></div>
+        <div class="map-girl" style="top:22%;left:28%;background:linear-gradient(135deg,#1D4ED8,#6D28D9);animation-delay:0.8s" onclick="showMapGirl(this,2)"></div>
+        <div class="map-girl" style="top:68%;left:73%;background:linear-gradient(135deg,#B45309,#D97706);animation-delay:1.2s" onclick="showMapGirl(this,3)"></div>
+        <div class="map-girl" style="top:45%;left:18%;background:linear-gradient(135deg,#BE185D,#EC4899);animation-delay:0.6s" onclick="showMapGirl(this,4)"></div>
+        <!-- Popup profilo -->
+        <div id="map-popup" class="map-popup" style="display:none"></div>
       </div>
       <button class="main-btn btn-purple fi d2" id="radar-btn" onclick="toggleRadar()">
         <i class="fas fa-satellite-dish"></i><span id="radar-btn-txt">Attiva Radar Sicurezza</span>
@@ -705,6 +804,8 @@ body.dark #toast{background:rgba(167,139,250,0.18);border-color:rgba(167,139,250
           <div class="leg-item"><div class="leg-line" style="background:#22C55E;box-shadow:0 0 5px #22C55E"></div><span class="leg-txt">Percorso sicuro</span></div>
           <div class="leg-item"><div class="leg-line" style="background:#EF4444;box-shadow:0 0 5px #EF4444"></div><span class="leg-txt">Evita area</span></div>
           <div class="leg-item"><div class="leg-dot" style="background:#06B6D4;box-shadow:0 0 7px #06B6D4"></div><span class="leg-txt">Safe Haven</span></div>
+          <div class="leg-item"><div class="leg-dot" style="background:#22C55E;box-shadow:0 0 7px #22C55E"></div><span class="leg-txt">Tu sei qui</span></div>
+          <div class="leg-item"><div class="leg-dot" style="background:#A855F7;box-shadow:0 0 7px #A855F7"></div><span class="leg-txt">Utenti vicine</span></div>
         </div>
       </div>
     </section>
@@ -946,6 +1047,59 @@ function goTo(s,n){
   document.getElementById(n)?.classList.add('active');
   if(s==='s-radar'){renderSwipeStack();setTimeout(swShineCard,350);}
 }
+
+/* ─── SPLASH ─── */
+setTimeout(()=>{
+  const sp=document.getElementById('splash');
+  if(sp){sp.classList.add('hide');setTimeout(()=>sp.style.display='none',650);}
+},2800);
+
+/* ─── GPS SHARE ─── */
+function openGpsSheet(){
+  document.getElementById('gps-overlay').classList.add('open');
+  document.getElementById('gps-sheet').classList.add('open');
+}
+function closeGpsSheet(){
+  document.getElementById('gps-overlay').classList.remove('open');
+  document.getElementById('gps-sheet').classList.remove('open');
+}
+function sendGps(btn){
+  const name=btn.closest('.gps-contact').querySelector('.gps-name').textContent;
+  btn.textContent='✓ Inviata';
+  btn.classList.add('sent');
+  btn.disabled=true;
+  toast('📍 Posizione inviata a '+name+'!');
+  setTimeout(closeGpsSheet,800);
+}
+
+/* ─── MAPPA RAGAZZE ─── */
+let mapPopupOpen=false;
+function showMapGirl(dot,idx){
+  const p=PROFILES[idx];
+  if(!p)return;
+  const popup=document.getElementById('map-popup');
+  if(mapPopupOpen&&popup.dataset.idx==idx){popup.style.display='none';mapPopupOpen=false;return;}
+  popup.dataset.idx=idx;
+  popup.style.display='block';
+  popup.style.left=dot.style.left;
+  popup.style.top=dot.style.top;
+  popup.innerHTML=`
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:7px">
+      <div class="map-popup-av" style="background:${p.color}">${p.initials.split('.')[0]}</div>
+      <div>
+        <div style="font-size:12px;font-weight:800;color:var(--txt);line-height:1;transition:var(--ease)">${p.name}</div>
+        <div style="font-size:9px;color:var(--muted);margin-top:2px">${p.dist} · ${p.loc.split(',')[1]?.trim()}</div>
+      </div>
+      <div class="map-popup-score" style="margin-left:auto">${p.score}</div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:9px">${p.tags.map(t=>`<span style="font-size:8px;font-weight:700;padding:2px 7px;border-radius:10px;background:rgba(124,58,237,0.12);color:var(--accent2);border:1px solid var(--card-border)">${t}</span>`).join('')}</div>
+    <button onclick="toast('💜 Connessa con ${p.name}!');document.getElementById('map-popup').style.display='none';mapPopupOpen=false" style="width:100%;padding:7px;border-radius:10px;border:none;background:var(--grad);color:#fff;font-size:11px;font-weight:800;cursor:pointer">Connetti</button>`;
+  mapPopupOpen=true;
+  document.addEventListener('click',function closeP(e){
+    if(!popup.contains(e.target)&&!dot.contains(e.target)){popup.style.display='none';mapPopupOpen=false;document.removeEventListener('click',closeP);}
+  },{once:false});
+}
+
 function toggleMode(){
   isDark=!isDark;
   document.body.classList.toggle('dark',isDark);
