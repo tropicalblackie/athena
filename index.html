@@ -534,6 +534,12 @@ body.dark #toast{background:rgba(167,139,250,0.18);border-color:rgba(167,139,250
 .feed-action{margin-top:12px;}
 .feed-action-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:40px;border:1px solid var(--card-border);background:linear-gradient(135deg,rgba(124,58,237,0.12),rgba(168,85,247,0.14));font-size:12px;font-weight:700;color:var(--accent);cursor:pointer;transition:all 0.2s;-webkit-tap-highlight-color:transparent;}
 .feed-action-btn:active{transform:scale(0.96);}
+.feed-tag.community{background:rgba(236,72,153,0.13);color:#F472B6;border:1px solid rgba(236,72,153,0.28);}
+.feed-tag.achievement{background:rgba(245,158,11,0.13);color:#FCD34D;border:1px solid rgba(245,158,11,0.28);}
+.feed-post.community{border-color:rgba(236,72,153,0.35);box-shadow:0 0 0 1px rgba(236,72,153,0.08),var(--shadow);}
+.feed-post.achievement{border-color:rgba(245,158,11,0.38);box-shadow:0 0 0 1px rgba(245,158,11,0.08),var(--shadow);}
+.feed-like-btn{display:inline-flex;align-items:center;gap:5px;padding:6px 13px;border-radius:40px;border:1px solid var(--card-border);background:transparent;font-size:11px;font-weight:700;color:var(--muted);cursor:pointer;transition:all 0.2s;-webkit-tap-highlight-color:transparent;}
+.feed-like-btn:active{transform:scale(0.96);}
 /* ═══════ PROFILO AGGIORNATO ═══════ */
 .trust-ring-wrap{position:relative;width:74px;height:74px;flex-shrink:0;}
 .trust-ring-wrap .av-inner{width:74px;height:74px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:900;color:#fff;box-shadow:0 0 0 3px var(--bg),0 0 0 5px var(--accent2),0 0 22px rgba(124,58,237,0.35);transition:var(--ease);}
@@ -874,30 +880,140 @@ body.dark #toast{background:rgba(167,139,250,0.18);border-color:rgba(167,139,250
       <div class="sec-title fi">Feed</div>
       <div class="sec-sub fi d1" style="margin-bottom:14px">Aggiornamenti · Richieste · Segnalazioni</div>
 
-      <!-- Post 1: News / Safe Haven B2B -->
+      <!-- 1: Safe Haven - Farmacia -->
       <div class="feed-post news fi d1" style="margin-bottom:12px">
         <div class="feed-tag news"><i class="fas fa-store" style="font-size:7px"></i>Safe Haven</div>
-        <div class="feed-txt">🏪 Nuovo Safe Haven: La Farmacia Rossi in Via Po è ora convenzionata H24. Personale formato.</div>
+        <div class="feed-txt">🏪 Farmacia Rossi in Via Po ora convenzionata H24. Personale formato Athena.</div>
         <div class="feed-meta"><i class="fas fa-clock" style="font-size:8px"></i>2 ore fa · Athena Verified</div>
       </div>
 
-      <!-- Post 2: Richiesta Lampo -->
-      <div class="feed-post fi d2" style="margin-bottom:12px">
+      <!-- 2: Richiesta Lampo - Porta Nuova -->
+      <div class="feed-post fi d1" style="margin-bottom:12px">
         <div class="feed-tag request"><i class="fas fa-bolt" style="font-size:7px"></i>Richiesta Lampo</div>
-        <div class="feed-txt">📍 M.B. - 10 min fa: Esco dalla SAA alle 18:30, qualcuna va verso la stazione Porta Nuova?</div>
+        <div class="feed-txt">📍 M.B. — 10 min fa: Esco dalla SAA alle 18:30, qualcuna va verso la stazione Porta Nuova?</div>
         <div class="feed-meta"><i class="fas fa-map-pin" style="font-size:8px"></i>Torino, Centro · 0.3 km da te</div>
         <div class="feed-action">
-          <button class="feed-action-btn" onclick="(function(b){var s=b.querySelector('.feed-count');s.textContent=parseInt(s.textContent)+1;b.style.background='linear-gradient(135deg,rgba(34,197,94,0.20),rgba(16,185,129,0.16))';b.style.color='#22C55E';b.style.borderColor='rgba(34,197,94,0.35)';b.disabled=true;})(this)">
-            <span>✋🏽</span><span>Ci sono io (<span class="feed-count">2</span>)</span>
-          </button>
+          <button class="feed-action-btn" onclick="ciSonoIo(this)"><span>✋🏽</span><span>Ci sono io (<span class="feed-count">2</span>)</span></button>
         </div>
       </div>
 
-      <!-- Post 3: Allarme Sicurezza -->
-      <div class="feed-post alert fi d3">
+      <!-- 3: Achievement - Elena Guardian -->
+      <div class="feed-post achievement fi d1" style="margin-bottom:12px">
+        <div class="feed-tag achievement"><i class="fas fa-trophy" style="font-size:7px"></i>Achievement</div>
+        <div class="feed-txt">🏆 Elena C. ha raggiunto il livello <strong>Guardian</strong> — 10 accompagnamenti completati. La community ti ringrazia!</div>
+        <div class="feed-meta"><i class="fas fa-star" style="font-size:8px;color:#FCD34D"></i>1 ora fa · Athena Network</div>
+      </div>
+
+      <!-- 4: Safe Haven - Bar Mirafiori -->
+      <div class="feed-post news fi d1" style="margin-bottom:12px">
+        <div class="feed-tag news"><i class="fas fa-store" style="font-size:7px"></i>Safe Haven</div>
+        <div class="feed-txt">🍺 Bar Mirafiori aperto fino alle 2:00. Personale formato Athena. Rifugio sicuro notturno.</div>
+        <div class="feed-meta"><i class="fas fa-clock" style="font-size:8px"></i>3 ore fa · Athena Verified</div>
+      </div>
+
+      <!-- 5: Richiesta - Tram 18 -->
+      <div class="feed-post fi d2" style="margin-bottom:12px">
+        <div class="feed-tag request"><i class="fas fa-bolt" style="font-size:7px"></i>Richiesta Lampo</div>
+        <div class="feed-txt">📍 V.F. — 5 min fa: Qualcuna prende il tram 18 da Lingotto verso il centro alle 19:30?</div>
+        <div class="feed-meta"><i class="fas fa-map-pin" style="font-size:8px"></i>Torino, Lingotto · 1.4 km da te</div>
+        <div class="feed-action">
+          <button class="feed-action-btn" onclick="ciSonoIo(this)"><span>✋🏽</span><span>Ci sono io (<span class="feed-count">1</span>)</span></button>
+        </div>
+      </div>
+
+      <!-- 6: Community - Grazie Sofia -->
+      <div class="feed-post community fi d2" style="margin-bottom:12px">
+        <div class="feed-tag community"><i class="fas fa-heart" style="font-size:7px"></i>Sorellanza</div>
+        <div class="feed-txt">💜 "Grazie a Sofia M. che mi ha accompagnata fino a casa ieri sera. Sei una roccia." — E.C.</div>
+        <div class="feed-meta"><i class="fas fa-user" style="font-size:8px"></i>Elena C. · 4 ore fa</div>
+        <div class="feed-action">
+          <button class="feed-like-btn" onclick="feedLike(this)"><i class="fas fa-heart" style="font-size:10px"></i><span class="feed-count">8</span></button>
+        </div>
+      </div>
+
+      <!-- 7: Alert - Valentino -->
+      <div class="feed-post alert fi d2" style="margin-bottom:12px">
         <div class="feed-tag alert"><i class="fas fa-triangle-exclamation" style="font-size:7px"></i>Segnalazione</div>
-        <div class="feed-txt">⚠️ Segnalazione: I lampioni del Parco del Valentino sono spenti. L'algoritmo ha già deviato i percorsi.</div>
+        <div class="feed-txt">⚠️ I lampioni del Parco del Valentino sono spenti. L'algoritmo ha già deviato i percorsi.</div>
         <div class="feed-meta"><i class="fas fa-robot" style="font-size:8px"></i>Athena AI · 15 min fa</div>
+      </div>
+
+      <!-- 8: Safe Haven - Parcheggio -->
+      <div class="feed-post news fi d2" style="margin-bottom:12px">
+        <div class="feed-tag news"><i class="fas fa-square-parking" style="font-size:7px"></i>Safe Haven</div>
+        <div class="feed-txt">🅿️ Nuovo parcheggio sorvegliato H24 in Via Roma ora convenzionato Athena. Telecamere attive.</div>
+        <div class="feed-meta"><i class="fas fa-clock" style="font-size:8px"></i>5 ore fa · Athena Verified</div>
+      </div>
+
+      <!-- 9: Richiesta - Politecnico -->
+      <div class="feed-post fi d2" style="margin-bottom:12px">
+        <div class="feed-tag request"><i class="fas fa-bolt" style="font-size:7px"></i>Richiesta Lampo</div>
+        <div class="feed-txt">📍 G.A. — 20 min fa: Ho il workshop al Politecnico fino alle 22:00, c'è qualcuna in zona Crocetta?</div>
+        <div class="feed-meta"><i class="fas fa-map-pin" style="font-size:8px"></i>Torino, Crocetta · 0.5 km da te</div>
+        <div class="feed-action">
+          <button class="feed-action-btn" onclick="ciSonoIo(this)"><span>✋🏽</span><span>Ci sono io (<span class="feed-count">0</span>)</span></button>
+        </div>
+      </div>
+
+      <!-- 10: Achievement - 47 richieste -->
+      <div class="feed-post achievement fi d3" style="margin-bottom:12px">
+        <div class="feed-tag achievement"><i class="fas fa-fire" style="font-size:7px"></i>Record</div>
+        <div class="feed-txt">🔥 Questa settimana: <strong>47 Richieste Lampo</strong> soddisfatte a Torino. Record storico della rete Athena!</div>
+        <div class="feed-meta"><i class="fas fa-chart-line" style="font-size:8px;color:#FCD34D"></i>Athena Network · oggi</div>
+      </div>
+
+      <!-- 11: Community - Esame -->
+      <div class="feed-post community fi d3" style="margin-bottom:12px">
+        <div class="feed-tag community"><i class="fas fa-heart" style="font-size:7px"></i>Sorellanza</div>
+        <div class="feed-txt">🎉 "Superata l'esame parziale! Qualcuna festeggia con me stasera in zona Vanchiglia?" — S.M.</div>
+        <div class="feed-meta"><i class="fas fa-user" style="font-size:8px"></i>Sofia M. · 6 ore fa</div>
+        <div class="feed-action">
+          <button class="feed-like-btn" onclick="feedLike(this)"><i class="fas fa-heart" style="font-size:10px"></i><span class="feed-count">12</span></button>
+        </div>
+      </div>
+
+      <!-- 12: Safe Haven - Metro -->
+      <div class="feed-post news fi d3" style="margin-bottom:12px">
+        <div class="feed-tag news"><i class="fas fa-train-subway" style="font-size:7px"></i>Safe Haven</div>
+        <div class="feed-txt">🚇 La metro Porta Nuova ora ha un angolo Athena con pulsante di emergenza dedicato. Attivo H24.</div>
+        <div class="feed-meta"><i class="fas fa-clock" style="font-size:8px"></i>Ieri · Athena Verified</div>
+      </div>
+
+      <!-- 13: Richiesta - Molinette -->
+      <div class="feed-post fi d3" style="margin-bottom:12px">
+        <div class="feed-tag request"><i class="fas fa-bolt" style="font-size:7px"></i>Richiesta Lampo</div>
+        <div class="feed-txt">📍 C.F. — 2 min fa: Esco dall'ospedale Molinette tra mezz'ora, qualcuna può aspettarmi fuori?</div>
+        <div class="feed-meta"><i class="fas fa-map-pin" style="font-size:8px"></i>Torino, Nizza Millefonti · 1.7 km da te</div>
+        <div class="feed-action">
+          <button class="feed-action-btn" onclick="ciSonoIo(this)"><span>✋🏽</span><span>Ci sono io (<span class="feed-count">1</span>)</span></button>
+        </div>
+      </div>
+
+      <!-- 14: Achievement - Badge Nottambula -->
+      <div class="feed-post achievement fi d3" style="margin-bottom:12px">
+        <div class="feed-tag achievement"><i class="fas fa-moon" style="font-size:7px"></i>Nuovo Badge</div>
+        <div class="feed-txt">🌙 Nuovo badge disponibile: <strong>"Nottambula Sicura"</strong> — Completa 5 rientri verificati dopo mezzanotte.</div>
+        <div class="feed-meta"><i class="fas fa-star" style="font-size:8px;color:#FCD34D"></i>Athena Network · ieri</div>
+      </div>
+
+      <!-- 15: Community - Garante -->
+      <div class="feed-post community fi d3" style="margin-bottom:12px">
+        <div class="feed-tag community"><i class="fas fa-heart" style="font-size:7px"></i>Sorellanza</div>
+        <div class="feed-txt">🤝 "Cerco garante per completare il mio Trust Score — 2 attività già verificate. DM aperto!" — A.V.</div>
+        <div class="feed-meta"><i class="fas fa-user" style="font-size:8px"></i>Aurora V. · 8 ore fa</div>
+        <div class="feed-action">
+          <button class="feed-like-btn" onclick="feedLike(this)"><i class="fas fa-hand" style="font-size:10px"></i><span class="feed-count">5</span></button>
+        </div>
+      </div>
+
+      <!-- 16: Richiesta - Valentino -->
+      <div class="feed-post fi d3" style="margin-bottom:4px">
+        <div class="feed-tag request"><i class="fas fa-bolt" style="font-size:7px"></i>Richiesta Lampo</div>
+        <div class="feed-txt">📍 L.R. — 35 min fa: Cerco compagnia per la camminata serale al Parco del Valentino. Vado con i cani 🐕</div>
+        <div class="feed-meta"><i class="fas fa-map-pin" style="font-size:8px"></i>Torino, Crocetta · 0.5 km da te</div>
+        <div class="feed-action">
+          <button class="feed-action-btn" onclick="ciSonoIo(this)"><span>✋🏽</span><span>Ci sono io (<span class="feed-count">3</span>)</span></button>
+        </div>
       </div>
     </section>
 
@@ -1046,6 +1162,25 @@ function goTo(s,n){
   document.getElementById(s)?.classList.add('active');
   document.getElementById(n)?.classList.add('active');
   if(s==='s-radar'){renderSwipeStack();setTimeout(swShineCard,350);}
+}
+
+/* ─── FEED ─── */
+function ciSonoIo(btn){
+  const s=btn.querySelector('.feed-count');
+  s.textContent=parseInt(s.textContent)+1;
+  btn.style.background='linear-gradient(135deg,rgba(34,197,94,0.20),rgba(16,185,129,0.16))';
+  btn.style.color='#22C55E';
+  btn.style.borderColor='rgba(34,197,94,0.35)';
+  btn.disabled=true;
+  toast('✋🏽 Perfetto! Sei nella lista.');
+}
+function feedLike(btn){
+  if(btn.dataset.liked)return;
+  btn.dataset.liked='1';
+  const s=btn.querySelector('.feed-count');
+  s.textContent=parseInt(s.textContent)+1;
+  btn.style.color='#F472B6';
+  btn.style.borderColor='rgba(236,72,153,0.35)';
 }
 
 /* ─── SPLASH ─── */
