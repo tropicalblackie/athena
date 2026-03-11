@@ -538,9 +538,6 @@ body.dark #toast{background:rgba(167,139,250,0.18);border-color:rgba(167,139,250
 .trust-ring-wrap{position:relative;width:74px;height:74px;flex-shrink:0;}
 .trust-ring-wrap .av-inner{width:74px;height:74px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:900;color:#fff;box-shadow:0 0 0 3px var(--bg),0 0 0 5px var(--accent2),0 0 22px rgba(124,58,237,0.35);transition:var(--ease);}
 .trust-ring-wrap svg{position:absolute;inset:0;pointer-events:none;}
-.skin-swatch{width:30px;height:30px;border-radius:50%;cursor:pointer;border:2.5px solid transparent;transition:all 0.18s;flex-shrink:0;}
-.skin-swatch.active{border-color:var(--accent);box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--accent);}
-.skin-swatch:hover{transform:scale(1.12);}
 .wall-card{background:linear-gradient(135deg,rgba(124,58,237,0.07),rgba(236,72,153,0.04));border:1px solid var(--card-border);border-radius:14px;padding:13px 14px;transition:var(--ease);}
 .wall-star{color:#FCD34D;font-size:11px;letter-spacing:2px;}
 .wall-author{font-size:10px;font-weight:700;color:var(--accent2);margin-top:7px;transition:var(--ease);}
@@ -845,19 +842,6 @@ body.dark #toast{background:rgba(167,139,250,0.18);border-color:rgba(167,139,250
         <div class="badge-chip" style="background:rgba(6,182,212,0.10);border:1px solid rgba(6,182,212,0.24);color:#67E8F9"><i class="fas fa-map-pin" style="font-size:9px"></i> Torino Local</div>
       </div>
 
-      <!-- Selettore Tono Pelle -->
-      <div class="card fi d2" style="margin-top:14px;padding:14px 16px">
-        <div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.09em;margin-bottom:11px;transition:var(--ease)"><i class="fas fa-hand" style="margin-right:5px;font-size:9px"></i>Tono Pelle Emoji</div>
-        <div style="display:flex;align-items:center;gap:10px">
-          <div class="skin-swatch" style="background:#FDDBB4" onclick="setSkin(this,'🏻')" title="Chiaro"></div>
-          <div class="skin-swatch" style="background:#F1C27D" onclick="setSkin(this,'🏼')" title="Medio chiaro"></div>
-          <div class="skin-swatch active" style="background:#C68642" onclick="setSkin(this,'🏽')" title="Medio"></div>
-          <div class="skin-swatch" style="background:#8D5524" onclick="setSkin(this,'🏾')" title="Medio scuro"></div>
-          <div class="skin-swatch" style="background:#4A2912" onclick="setSkin(this,'🏿')" title="Scuro"></div>
-          <span style="margin-left:8px;font-size:24px;line-height:1" id="skin-preview">✋🏽</span>
-        </div>
-      </div>
-
       <!-- Impostazioni -->
       <div class="card fi d2" style="margin-top:12px">
         <div class="set-row">
@@ -961,12 +945,6 @@ function goTo(s,n){
   document.getElementById(s)?.classList.add('active');
   document.getElementById(n)?.classList.add('active');
   if(s==='s-radar'){renderSwipeStack();setTimeout(swShineCard,350);}
-}
-function setSkin(el,tone){
-  document.querySelectorAll('.skin-swatch').forEach(s=>s.classList.remove('active'));
-  el.classList.add('active');
-  const p=document.getElementById('skin-preview');
-  if(p)p.textContent='✋'+tone;
 }
 function toggleMode(){
   isDark=!isDark;
