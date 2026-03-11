@@ -717,7 +717,7 @@ body.dark #toast{background:rgba(167,139,250,0.18);border-color:rgba(167,139,250
       <div class="sec-title fi">Community</div>
       <div class="sec-sub fi d1">Connettiti, parla, cammina insieme</div>
       <button class="main-btn btn-teal fi d1" id="scorta-btn" onclick="toggleScorta()">
-        <i class="fas fa-headset"></i><span id="scorta-btn-txt">Attiva Audio-Scorta (Live)</span>
+        <i class="fas fa-headset"></i><span id="scorta-btn-txt">Chiama ATHENA</span>
       </button>
       <div class="card fi d1" id="waveform-ui">
         <div class="wav-caller">
@@ -1199,7 +1199,7 @@ function updateCallTimer(){
 }
 function toggleScorta(){
   scortaOn=!scortaOn;
-  document.getElementById('scorta-btn-txt').textContent=scortaOn?'Termina Audio-Scorta':'Attiva Audio-Scorta (Live)';
+  document.getElementById('scorta-btn-txt').textContent=scortaOn?'Termina ATHENA':'Chiama ATHENA';
   document.getElementById('scorta-btn').className='main-btn fi d1 '+(scortaOn?'btn-red':'btn-teal');
   const wu=document.getElementById('waveform-ui');
   if(scortaOn){wu.classList.add('on');callSec=0;updateCallTimer();callInterval=setInterval(()=>{callSec++;updateCallTimer();},1000);toast('🎧 Audio-Scorta attiva');}
